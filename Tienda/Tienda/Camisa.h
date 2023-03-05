@@ -1,23 +1,21 @@
 #pragma once
 #include "Prenda.h"
 
-enum class Manga {
-    CORTA,
-    LARGA
-};
-
-enum class Cuello {
-    COMUN,
-    MAO
-};
+enum class TipoCuello { MAO, COMUN };
+enum class TipoManga { CORTA, LARGA };
 
 class Camisa : public Prenda {
-public:
-    Camisa(Calidad calidad, double precioUnitario, int cantidadUnidades, Manga manga, Cuello cuello) :
-        Prenda(calidad, precioUnitario, cantidadUnidades), manga(manga), cuello(cuello) {}
-
 private:
-    Manga manga;
-    Cuello cuello;
-};
+    TipoCuello tipoCuello;
+    TipoManga tipoManga;
 
+public:
+    Camisa(Calidad _calidad, float _precioUnitario, int _cantidadUnidades, TipoCuello _tipoCuello, TipoManga _tipoManga) :
+        Prenda(_calidad, _precioUnitario, _cantidadUnidades), tipoCuello(_tipoCuello), tipoManga(_tipoManga) {}
+
+    TipoCuello getTipoCuello() const { return tipoCuello; }
+    TipoManga getTipoManga() const { return tipoManga; }
+
+    void setTipoCuello(TipoCuello _tipoCuello) { tipoCuello = _tipoCuello; }
+    void setTipoManga(TipoManga _tipoManga) { tipoManga = _tipoManga; }
+};
