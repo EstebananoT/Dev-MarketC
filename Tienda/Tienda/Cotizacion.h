@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 #include <chrono>
-#include "Prenda.hpp"
+#include "Prenda.h"
 
 using namespace std;
 class Cotizacion {
@@ -9,14 +9,14 @@ private:
     int id;
     std::chrono::system_clock::time_point fechaHora;
     int codigoVendedor;
-    Prenda prenda;
+    Prenda* prenda;
     int cantidad;
-    double resultado;
+    double total;
 
 public:
-    Cotizacion(int id, const std::chrono::system_clock::time_point& fechaHora, int codigoVendedor, const Prenda& prenda, int cantidad, double resultado)
-        : id(id), fechaHora(fechaHora), codigoVendedor(codigoVendedor), prenda(prenda), cantidad(cantidad), resultado(resultado) {
-        fechaHora = std::chrono::system_clock::now();//Setea fecha automatico cuando se crea una cotizacion.
+    Cotizacion(int codigo, int codigo_vendedor, Prenda* prenda, int cantidad, double total)
+        : id(codigo), codigoVendedor(codigo_vendedor), prenda(prenda), cantidad(cantidad), total(total) {
+        setFechaHora(std::chrono::system_clock::now());//Setea fecha automatico cuando se crea una cotizacion.
     }
 
     //Metodos
@@ -31,13 +31,13 @@ public:
     int getCodigoVendedor() const { return codigoVendedor; }
     void setCodigoVendedor(int codigoVendedor) { this->codigoVendedor = codigoVendedor; }
 
-    const Prenda& getPrenda() const { return prenda; }
-    void setPrenda(const Prenda& prenda) { this->prenda = prenda; }
+    const Prenda* getPrenda() const { return prenda; }
+    void setPrenda(Prenda* prenda) { this->prenda = prenda; }
 
     int getCantidad() const { return cantidad; }
     void setCantidad(int cantidad) { this->cantidad = cantidad; }
 
-    double getResultado() const { return resultado; }
-    void setResultado(double resultado) { this->resultado = resultado; }
+    double getResultado() const { return total; }
+    void setResultado(double resultado) { this->total = resultado; }
 };
 

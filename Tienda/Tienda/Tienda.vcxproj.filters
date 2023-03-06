@@ -37,6 +37,18 @@
     <Filter Include="Domain\Prendas\TipoPrendas\Pantalon">
       <UniqueIdentifier>{fe096290-66e6-4ace-b34b-9b00c6fb894b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Presenter\Presenter Class">
+      <UniqueIdentifier>{553cb111-7b56-4e0c-90f1-11a49333890c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\View Class">
+      <UniqueIdentifier>{64fbc228-19da-4e2e-90b8-2d4ae186dd0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\IView">
+      <UniqueIdentifier>{cdf2a5a7-e318-4ed9-8310-10e798f11898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Domain\Prendas\PrendaFactory">
+      <UniqueIdentifier>{39ab38d2-1a31-46b3-8245-73922076f629}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendedor.cpp">
@@ -60,15 +72,18 @@
     <ClCompile Include="Pantalon.cpp">
       <Filter>Domain\Prendas\TipoPrendas\Pantalon</Filter>
     </ClCompile>
+    <ClCompile Include="Presenter.cpp">
+      <Filter>Presenter\Presenter Class</Filter>
+    </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>View\View Class</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vendedor.h">
       <Filter>Domain\Vendedor</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Presenter</Filter>
-    </ClInclude>
-    <ClInclude Include="tienda.h">
+    <ClInclude Include="Tienda.h">
       <Filter>Domain\Tienda</Filter>
     </ClInclude>
     <ClInclude Include="Cotizacion.h">
@@ -82,6 +97,18 @@
     </ClInclude>
     <ClInclude Include="Pantalon.h">
       <Filter>Domain\Prendas\TipoPrendas\Pantalon</Filter>
+    </ClInclude>
+    <ClInclude Include="Presenter.h">
+      <Filter>Presenter\Presenter Class</Filter>
+    </ClInclude>
+    <ClInclude Include="IView.h">
+      <Filter>View\IView</Filter>
+    </ClInclude>
+    <ClInclude Include="PrendaFactory.h">
+      <Filter>Domain\Prendas\PrendaFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>View\View Class</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

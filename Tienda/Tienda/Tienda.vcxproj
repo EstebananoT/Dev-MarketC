@@ -132,17 +132,22 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Pantalon.cpp" />
     <ClCompile Include="Prenda.cpp" />
+    <ClCompile Include="Presenter.cpp" />
     <ClCompile Include="Tienda.cpp" />
     <ClCompile Include="Vendedor.cpp" />
+    <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camisa.h" />
     <ClInclude Include="Cotizacion.h" />
+    <ClInclude Include="IView.h" />
     <ClInclude Include="Pantalon.h" />
     <ClInclude Include="Prenda.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="tienda.h" />
+    <ClInclude Include="PrendaFactory.h" />
+    <ClInclude Include="Presenter.h" />
+    <ClInclude Include="Tienda.h" />
     <ClInclude Include="Vendedor.h" />
+    <ClInclude Include="View.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tienda.rc" />

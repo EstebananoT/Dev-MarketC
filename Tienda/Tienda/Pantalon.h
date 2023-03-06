@@ -1,18 +1,22 @@
 #include "Prenda.h"
+#include <string>
+enum TipoPantalon { COMUN, CHUPIN };
 
 class Pantalon : public Prenda {
 public:
-    enum TipoPantalon {
-        COMUN,
-        CHUPIN
-    };
+    
 
-    Pantalon(Calidad calidad, double precioUnitario, int cantidadUnidades, TipoPantalon tipo)
-        : Prenda(calidad, precioUnitario, cantidadUnidades), tipo(tipo) {}
-
-    TipoPantalon getTipo() const { return tipo; }
-    void setTipo(TipoPantalon tipo) { this->tipo = tipo; }
-
+    Pantalon(Calidad calidad, double precioUnitario, int cantidadUnidades, TipoPantalon tipo);
+    
+    std::string getNombrePrenda() { return "Pantalon"; }
+    
+    
+    //Method
+    double getPrecioTotalPrenda() override;
+    bool isChupin() { getTipoPantalon() == TipoPantalon::CHUPIN ? true : false; };
+    //Get and Setter TipoPantalon
+    void setTipoP(TipoPantalon tipo) { tipo = tipo; }
+    TipoPantalon getTipoPantalon() { return tipo; }
 private:
     TipoPantalon tipo;
 };

@@ -1,27 +1,41 @@
 #include <string>
 #include <vector>
 #include "Vendedor.h"
+#include "Cotizacion.h"
 class Tienda {
 private:
-    std::string nombre;
-    std::string direccion;
-    std::vector<Vendedor> vendedores;
-    std::vector<Prenda> prendas;
+    string nombre;
+    string direccion;
+    vector<Vendedor*> vendedores;
+    vector<Prenda*> prendas;
+    vector<Cotizacion> allCotizaciones;
 public:
-    Tienda(std::string nombre, std::string direccion) : nombre(nombre), direccion(direccion) {}
+    Tienda(string nombre, string direccion) 
+        : nombre(nombre), direccion(direccion) {}
     ~Tienda() {}
-
-    std::string getNombre() const { return nombre; }
+    //Metodos para usar la logica
+    vector<Cotizacion> getCotizaciones(int id);
+    string getNombre() { return nombre; }
     void setNombre(std::string nombre) { this->nombre = nombre; }
+    Vendedor* getVendedorPorId(int id);
 
-    std::string getDireccion() const { return direccion; }
+    string getDireccion() { return direccion; }
     void setDireccion(std::string direccion) { this->direccion = direccion; }
 
-    void agregarVendedor(Vendedor vendedor) { vendedores.push_back(vendedor); }
-    std::vector<Vendedor> getVendedores() const { return vendedores; }
+    void agregarVendedor(Vendedor* vendedor) { vendedores.push_back(vendedor); }
+    vector<Vendedor*> getVendedores() { return vendedores; }
 
-    void agregarPrenda(Prenda prenda) { prendas.push_back(prenda); }
-    std::vector<Prenda> getPrendas() const { return prendas; }
+    void agregarPrenda(Prenda* prenda) { prendas.push_back(prenda); }
+    vector<Prenda*> getPrendas(){ return prendas; }
+
+    void agregarCotizacion(Cotizacion cotizacion) { allCotizaciones.push_back(cotizacion); }
+    vector<Cotizacion> getCotizaciones() { return allCotizaciones; }
 };
 
 
+class VendedorNoEncontradoException : public std::exception {
+public:
+    virtual const char* what() const throw() {
+        return "El vendedor no se encontró.";
+    }
+};

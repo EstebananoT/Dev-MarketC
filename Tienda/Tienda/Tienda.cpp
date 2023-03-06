@@ -2,10 +2,18 @@
 //
 
 #include <iostream>
-#include "tienda.h"
+#include <vector>
+#include "Tienda.h"
+#include "Vendedor.h"
+#include "Cotizacion.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+
+
+Vendedor* Tienda::getVendedorPorId(int id) {
+    for (Vendedor* vendedor : vendedores) {
+        if (vendedor->getCodigo() == id) {
+            return vendedor;
+        }
+    }
+    throw VendedorNoEncontradoException(); // Si no se encuentra el vendedor, se retorna un puntero nulo
 }
-
