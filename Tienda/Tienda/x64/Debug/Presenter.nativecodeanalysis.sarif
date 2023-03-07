@@ -1,0 +1,123 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.34.31942.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/presenter.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "83b31790b654ef0c29f4770defcaa375193ff58e58248c16c00bc63a18ed483d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/presenter.h"
+          },
+          "hashes": {
+            "sha-256": "bc50374db6783e4022dd8568a3fec9d3edb8c4a3f81de1eb9e5c7ab75bc907f6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/iview.h"
+          },
+          "hashes": {
+            "sha-256": "18051547e097745b65e70ea1d082cd9d3968c0a5e4eb05cf027ff14631d32d18"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/vendedor.h"
+          },
+          "hashes": {
+            "sha-256": "e215d96ae4201b1fa77191d7af85be4864f67994d59f8d3fcf262b00e046c76b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/cotizacion.h"
+          },
+          "hashes": {
+            "sha-256": "10a949c2329f92c355618b18e537afe0977bc7e5b07f26e278db1b10b610f8b7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/prenda.h"
+          },
+          "hashes": {
+            "sha-256": "b9f78a9b47058fd32b1ebc20c192089d7d358d79e6736ce1bcb19d70baa94919"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/tienda.h"
+          },
+          "hashes": {
+            "sha-256": "29f4c0c5b9fe57e58323e848b9c471f604ae1e360e106aeabb4be00a434ab2ea"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/pantalon.h"
+          },
+          "hashes": {
+            "sha-256": "8ae11c26c4a2e1f8542ae8845d9f7306ab36255356ee2a5972562a89a0252123"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/camisa.h"
+          },
+          "hashes": {
+            "sha-256": "cf7febde338594b6c6de46438629980bc18b7c14e810df2b3b15e458a3608cc0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/prendafactory.h"
+          },
+          "hashes": {
+            "sha-256": "df6ebca39d41f97de9edb9954fc91675513f23a9a4c1e7ce644e27e370e8cd62"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/camisa.cpp"
+          },
+          "hashes": {
+            "sha-256": "7dd2ac2a1966459cb62e3a7ee7b3c97cdaab1de9cd1d52abc0d4226bd2e6e2d1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/user/desktop/dev-marketc/tienda/tienda/pantalon.cpp"
+          },
+          "hashes": {
+            "sha-256": "86b7b75d6879daca99854dd55a0e517f3d7e18fe9a9fcd4fa145d874a6129c13"
+          }
+        }
+      ]
+    }
+  ]
+}

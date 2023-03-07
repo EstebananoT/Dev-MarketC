@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CAMISA_H
+#define CAMISA_H
 #include "Prenda.h"
 #include <string>
 
@@ -8,7 +9,9 @@ enum class TipoManga { CORTA, LARGA };
 class Camisa : public Prenda {
 
 public:
-    Camisa(Calidad calidad, float precioUnitario,
+    
+
+    Camisa(Calidad calidad, double precioUnitario,
         int cantidadUnidades, TipoCuello tipoCuello, TipoManga tipoManga);
        
    
@@ -16,8 +19,8 @@ public:
 
     //method
     double getPrecioTotalPrenda() override;
-    bool isCuelloMao() { getTipoCuello() == TipoCuello::MAO ? true : false; };
-    bool isMangaCorta() { getTipoManga() == TipoManga::CORTA ? true : false; };
+    bool isCuelloMao() { return getTipoCuello() == TipoCuello::MAO ? true : false; };
+    bool isMangaCorta() { return getTipoManga() == TipoManga::CORTA ? true : false; };
     //Get and Setter TipoPantalon
     TipoCuello getTipoCuello() const { return tipoCuello; }
     TipoManga getTipoManga() const { return tipoManga; }
@@ -28,3 +31,4 @@ private:
     TipoCuello tipoCuello;
     TipoManga tipoManga;
 };
+#endif // CAMISA_H

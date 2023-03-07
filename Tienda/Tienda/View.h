@@ -4,6 +4,7 @@
 #include "IView.h"
 #include "PrendaFactory.h"
 #include <string>
+#include "Vendedor.h"
 
 class Presenter;
 

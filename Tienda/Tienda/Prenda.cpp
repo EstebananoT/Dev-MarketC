@@ -1,5 +1,18 @@
 #include "Prenda.h"
 
+
+Prenda::Prenda(Calidad _calidad, double _precioUnitario, int _cantidad)
+{
+    calidad = _calidad;
+    precioUnitario = _precioUnitario;
+    cantidad = _cantidad;
+}
+
+double Prenda::getPrecioTotalPrenda()
+{
+    return 0.0;
+}
+
 // Getter y Setter de calidad
 Calidad Prenda::getCalidad() {
     return calidad;

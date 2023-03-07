@@ -1,33 +1,25 @@
 #pragma once
 #include "Vendedor.h"
-#include "Prenda.h"
-#include "Cotizacion.h"
-#include "Camisa.h"
 #include <typeindex>
 
-enum class TipoCuello { MAO, COMUN };
-enum class TipoManga { CORTA, LARGA };
-enum Calidad { STANDARD, PREMIUM };
-enum TipoPantalon { COMUN, CHUPIN };
-
-void Vendedor::hacerCotizacion(Prenda& prenda, int cantidad, int codigo_Cotiza) {
-    if (cantidad > prenda.getCantidadUnidades())throw PrendaNoStock();
+void Vendedor::hacerCotizacion(Prenda* prenda, int cantidad, int codigo_Cotiza) {
+    if (cantidad > prenda->getCantidadUnidades())throw PrendaNoStock();
     else {
-        double precio = prenda.getPrecioTotalPrenda();
+        double precio = prenda->getPrecioTotalPrenda();
         
         double total = precio * cantidad;
-        Vendedor::agregarCotizacion(Cotizacion(++codigo_Cotiza, this->getCodigo(), &prenda, cantidad, total));
-
+        Vendedor::agregarCotizacion(new Cotizacion(++codigo_Cotiza, this->getCodigo(), prenda, cantidad, total));
+        
     }
     
 }
 
-void Vendedor::agregarCotizacion(Cotizacion cotizacion) {
-    getTienda().agregarCotizacion(cotizacion);
+void Vendedor::agregarCotizacion(Cotizacion* cotizacion) {
+    tienda->agregarCotizacion(cotizacion);
 }
 
 Camisa* Vendedor::buscarCamisa(bool isCuelloMao, bool isMangaCorta , bool isPremiun) {
-    vector<Prenda*> prendas = tienda.getPrendas();
+    vector<Prenda*> prendas = tienda->getPrendas();
     
     //Variable Camisa a encontrar (Aqui se guarda :)
     Camisa* objCamisaFound = nullptr;
@@ -82,7 +74,7 @@ Camisa* Vendedor::buscarCamisa(bool isCuelloMao, bool isMangaCorta , bool isPrem
 
 Pantalon* Vendedor::buscarPantalon(bool isChupin, bool isPremiun) {
 
-    vector<Prenda*> prendas = tienda.getPrendas();
+    vector<Prenda*> prendas = tienda->getPrendas();
     //Variable Camisa a encontrar (Aqui se guarda :)
     Pantalon* objCamisaFound = nullptr;
     // Iterar por el vector de prendas

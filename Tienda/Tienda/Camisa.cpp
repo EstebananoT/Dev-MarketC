@@ -2,7 +2,7 @@
 #include "Prenda.h"
 double Camisa::getPrecioTotalPrenda() {
     // Si la prenda es una camisa
-    long precio = this->getPrecioUnitario();
+    double precio = this->getPrecioUnitario();
     // Si la camisa es de tipo manga corta, rebaja el precio un 10%
     if (this->getTipoManga() == TipoManga::CORTA) {
         precio -= precio * 0.1;
@@ -19,5 +19,5 @@ double Camisa::getPrecioTotalPrenda() {
     return precio;
 }
 
-Camisa::Camisa(Calidad calidad, float precioUnitario, int cantidadUnidades, TipoCuello tipoCuello, TipoManga tipoManga) 
+Camisa::Camisa(Calidad calidad, double precioUnitario, int cantidadUnidades, TipoCuello tipoCuello, TipoManga tipoManga) 
     :Prenda(calidad, precioUnitario, cantidadUnidades), tipoCuello(tipoCuello), tipoManga(tipoManga) {}

@@ -1,8 +1,9 @@
+
 #ifndef PRESENTER_H
 #define PRESENTER_H
-
-class IView;
-class Vendedor;
+#include <string>
+#include "IView.h"
+#include "Vendedor.h"
 
 class Presenter
 {
@@ -14,9 +15,12 @@ public:
 	~Presenter();
 	Pantalon* buscarPantalon(bool isChupin, bool isPremiun);
 	Camisa* buscarCamisa(bool isCuelloMao, bool isMangaCorta, bool isPremiun);
-	void hacerCotizacion(Prenda p, int cantidad, int codigoCotizacion);
+	void hacerCotizacion(Prenda* p, int cantidad, int codigoCotizacion);
 	string verHistorialCotizaciones();
-	//Setter
+
+	//Setter and Getter
 	void setVendedor(Vendedor* r) { m_vendedor = r; }
+	Vendedor* getVendedor() { return m_vendedor; }
 };
+
 #endif //PRESENTER_H

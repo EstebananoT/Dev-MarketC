@@ -10,8 +10,10 @@ Presenter::Presenter(IView* view)
 	: m_view(view)
 {
 	//Creacion de datos Fictis XD
-	Tienda QBendicion("A-quetel Agarro", "Calle de Dios #69-666");
-	Vendedor* vendedor1 = new Vendedor("Juan", "Perez",12224, QBendicion);
+	Tienda* QBendicion = new Tienda("A-quetel Agarro", "Calle de Dios #69-666");
+	std::string nombre = "Juan";
+	std::string apellido = "Perez";
+	Vendedor* vendedor1 = new Vendedor(nombre, apellido,12224, QBendicion);
 	setVendedor(vendedor1);
 	
 	//Camisas
@@ -43,18 +45,18 @@ Presenter::Presenter(IView* view)
 	Prenda* camisaPCM2 = PrendaFactory::crearPantalon(Calidad::PREMIUM, 75000, 250, TipoPantalon::COMUN);
 
 	//AgregarPrendas a Tienda
-	QBendicion.agregarPrenda(camisaMC1);
-	QBendicion.agregarPrenda(camisaMC2);
-	QBendicion.agregarPrenda(camisaMC3);
-	QBendicion.agregarPrenda(camisaMC4);
-	QBendicion.agregarPrenda(camisaML1);
-	QBendicion.agregarPrenda(camisaML2);
-	QBendicion.agregarPrenda(camisaML3);
-	QBendicion.agregarPrenda(camisaML4);
-	QBendicion.agregarPrenda(camisaPCH1);
-	QBendicion.agregarPrenda(camisaPCH2);
-	QBendicion.agregarPrenda(camisaPCM1);
-	QBendicion.agregarPrenda(camisaPCM2);
+	QBendicion->agregarPrenda(camisaMC1);
+	QBendicion->agregarPrenda(camisaMC2);
+	QBendicion->agregarPrenda(camisaMC3);
+	QBendicion->agregarPrenda(camisaMC4);
+	QBendicion->agregarPrenda(camisaML1);
+	QBendicion->agregarPrenda(camisaML2);
+	QBendicion->agregarPrenda(camisaML3);
+	QBendicion->agregarPrenda(camisaML4);
+	QBendicion->agregarPrenda(camisaPCH1);
+	QBendicion->agregarPrenda(camisaPCH2);
+	QBendicion->agregarPrenda(camisaPCM1);
+	QBendicion->agregarPrenda(camisaPCM2);
 }
 
 Presenter::~Presenter()
@@ -64,23 +66,27 @@ Presenter::~Presenter()
 
 Pantalon* Presenter::buscarPantalon(bool isChupin, bool isPremiun) {
 	try {
-		m_vendedor->buscarPantalon(isChupin , isPremiun);
+		return m_vendedor->buscarPantalon(isChupin , isPremiun);
 	}
 	catch (PrendaNotFound& e) {
 		std::cout << "Error: " << e.what() << std::endl;
+
+		return nullptr;
 	}
 }
 
 Camisa* Presenter::buscarCamisa(bool isCuelloMao, bool isMangaCorta, bool isPremiun) {
 	try {
-		m_vendedor->buscarCamisa(isCuelloMao, isMangaCorta , isPremiun);
+		return m_vendedor->buscarCamisa(isCuelloMao, isMangaCorta , isPremiun);
 	}
 	catch (PrendaNotFound& e) {
 		std::cout << "Error: " << e.what() << std::endl;
+
+		return nullptr;
 	}
 }
 
-void Presenter::hacerCotizacion(Prenda p ,int cantidad, int codigoCotizacion) {
+void Presenter::hacerCotizacion(Prenda* p ,int cantidad, int codigoCotizacion) {
 	try {
 		m_vendedor->hacerCotizacion(p, cantidad, codigoCotizacion);
 	}
@@ -91,8 +97,8 @@ void Presenter::hacerCotizacion(Prenda p ,int cantidad, int codigoCotizacion) {
 
 string Presenter::verHistorialCotizaciones(){
 	string result;
-	for (const Cotizacion c : m_vendedor->getCotizaciones()) {
-		result += c.toString() + "\n";
+	for (const Cotizacion* c : m_vendedor->getCotizaciones()) {
+		result += c->toString() + "\n";
 	}
 	return result;
 }

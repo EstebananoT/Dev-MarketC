@@ -1,11 +1,13 @@
+#ifndef PRENDA_H
+#define PRENDA_H
 #include <string>
-
 
 enum Calidad { STANDARD, PREMIUM };
 
 class Prenda {
-public:
 
+public:
+    
     // Constructor
     Prenda(Calidad calidad, double precioUnitario, int cantidad);
     //Method
@@ -16,15 +18,12 @@ public:
     int getCantidadUnidades();
     std::string getNombrePrenda();
     // Setters
-    void setPrecioUnitario(double precioUnitario);
+    void setPrecioUnitario(double _precioUnitario);
     void setCalidad(Calidad _calidad);
-    void setCantidad(int cantidad);
-    Calidad getCalidad() ;
-    void setCalidad(Calidad calidad);
     void setCantidadUnidades(int _cantidadUnidades);
 private:
     Calidad calidad;
     double precioUnitario;
     int cantidad;
 };
-
+#endif // PRENDA_H

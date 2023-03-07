@@ -1,9 +1,10 @@
+#ifndef COTIZACION_H
+#define COTIZACION_H
 #include <string>
 #include <iostream>
 #include <chrono>
 #include "Prenda.h"
 
-using namespace std;
 class Cotizacion {
 private:
     int id;
@@ -20,7 +21,7 @@ public:
     }
 
     //Metodos
-    string toString() const;
+    std::string toString() const;
 
     //Gettes y Setters de Cotizacion
     int getId() const { return id; }
@@ -41,3 +42,4 @@ public:
     void setResultado(double resultado) { this->total = resultado; }
 };
 
+#endif //COTIZACION_H
