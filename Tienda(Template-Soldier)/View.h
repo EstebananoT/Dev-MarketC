@@ -19,6 +19,8 @@ private:
 	void showMainMenu();
 	void menuCotizarPrenda();
 	void menuPantalon();
+	void menuCamisas();
+	bool menuCamisaManga();
 	bool menuPremiun();
 	double precioPrenda();
 	int cantidadPrendas();

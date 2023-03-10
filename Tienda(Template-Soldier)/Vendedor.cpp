@@ -57,7 +57,15 @@ Camisa* Vendedor::buscarCamisa(bool isCuelloMao, bool isMangaCorta, bool isPremi
     Camisa* objCamisaFound = nullptr;
     for (int i = 0; i < camisas.size(); i++) {
         if (camisas[i]->getCalidad() == Calidad::PREMIUM && isPremiun) {
-            if (camisas[i]->isCuelloMao() == isCuelloMao) {
+            if (camisas[i]->isCuelloMao() == isCuelloMao && camisas[i]->isMangaCorta() == isMangaCorta) {
+                objCamisaFound = camisas[i];
+                break;
+            }
+            else if(camisas[i]->isCuelloMao() != isCuelloMao && camisas[i]->isMangaCorta() == isMangaCorta){
+                objCamisaFound = camisas[i];
+                break;
+            }
+            else if (camisas[i]->isCuelloMao() == isCuelloMao && camisas[i]->isMangaCorta() != isMangaCorta) {
                 objCamisaFound = camisas[i];
                 break;
             }
@@ -67,7 +75,15 @@ Camisa* Vendedor::buscarCamisa(bool isCuelloMao, bool isMangaCorta, bool isPremi
             }
         }
         else if (camisas[i]->getCalidad() != Calidad::PREMIUM && !isPremiun) {
-            if (camisas[i]->isCuelloMao() == isCuelloMao) {
+            if (camisas[i]->isCuelloMao() == isCuelloMao && camisas[i]->isMangaCorta() == isMangaCorta) {
+                objCamisaFound = camisas[i];
+                break;
+            }
+            else if (camisas[i]->isCuelloMao() != isCuelloMao && camisas[i]->isMangaCorta() == isMangaCorta) {
+                objCamisaFound = camisas[i];
+                break;
+            }
+            else if (camisas[i]->isCuelloMao() == isCuelloMao && camisas[i]->isMangaCorta() != isMangaCorta) {
                 objCamisaFound = camisas[i];
                 break;
             }

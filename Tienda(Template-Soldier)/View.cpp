@@ -136,9 +136,8 @@ void View::runOptionPrenda(const char* option, bool& exitCondition)
 	}
 	else if (str_option == "2")
 	{
-		//menuCamisa();
-		std::cin.get();
-		exitCondition = false;
+		menuCamisas();
+		exitCondition = true;
 	}
 	else if (str_option == "x" || str_option == "X")
 	{
@@ -263,6 +262,158 @@ void View::menuPantalon() {
 	} while (!exitCondition);
 }
 
+void View::menuCamisas() {
+	std::string option;
+	bool exitCondition = false;
+	do
+	{
+		//std::system("cls");
+		showText("-== COTIZAR PRENDA ==-");
+		showText("------------------------------------------------------------------");
+		showText("Atendido por :" + m_vendedor->getNombre() + " " + m_vendedor->getApellido());
+		showText("La camisa a cotizar, tiene cuello mao?");
+		showText(" ");
+		showText("1) Si");
+		showText("2) No");
+		showText("X) Volver al menu principal");
+		std::cin >> option;
+		std::system("cls");
+		if (option == "1")
+		{
+			//std::system("cls");
+			//Busca la prenda en la Tienda
+			bool isMangaCorta = menuCamisaManga();
+			bool isPremiun = menuPremiun();
+			Camisa* camisaAcotizar = m_presenter->buscarCamisa(true, isMangaCorta, isPremiun);
+			if (camisaAcotizar != nullptr) {
+				showText("Cantidad de Unidades: " + std::to_string(camisaAcotizar->getCantidadUnidades()));
+			}
+			else {
+				showText("Error: objeto pantalonAcotizar no válido.");
+			}
+			//Setea el valor dado por el usuario a la prenda para poder hacer la cotizacion
+			double valorPrenda = precioPrenda();
+
+			camisaAcotizar->setPrecioUnitario(valorPrenda);
+
+			showText("Cantidad de Unidades :" + camisaAcotizar->getCantidadUnidades());
+			int cantidadPrenda = cantidadPrendas();
+			//La cotizada me la ag*rra
+			//DIOS MIO QUE ACOPLADO ESTA ESTE CODIGO :'0 AGAIN
+			try {
+				Cotizacion c = m_presenter->hacerCotizacionCamisa(camisaAcotizar, cantidadPrenda);
+				showText("Cotizacion realizada con exito!");
+				showText(c.toString());
+				std::cin.get();
+				exitCondition = true;
+			}
+			catch (PrendaNoStock& e) {
+				showText("Lo sentimos no pudimos realizar la cotizacion...");
+				showText("Volviendo al menu principal....");
+				std::cin.get();
+				exitCondition = true;
+			}
+		}
+		else if (option == "2")
+		{
+			//std::system("cls");
+			//Busca la prenda en la Tienda
+			bool isMangaCorta = menuCamisaManga();
+			bool isPremiun = menuPremiun();
+			Camisa* camisaAcotizar = m_presenter->buscarCamisa(false, isMangaCorta, isPremiun);
+			if (camisaAcotizar != nullptr) {
+				showText("Cantidad de Unidades: " + std::to_string(camisaAcotizar->getCantidadUnidades()));
+			}
+			else {
+				showText("Error: objeto pantalonAcotizar no válido.");
+			}
+			//Setea el valor dado por el usuario a la prenda para poder hacer la cotizacion
+			double valorPrenda = precioPrenda();
+
+			camisaAcotizar->setPrecioUnitario(valorPrenda);
+
+			showText("Cantidad de Unidades :" + camisaAcotizar->getCantidadUnidades());
+			int cantidadPrenda = cantidadPrendas();
+			//La cotizada me la ag*rra
+			//DIOS MIO QUE ACOPLADO ESTA ESTE CODIGO :'0 AGAIN
+			try {
+				Cotizacion c = m_presenter->hacerCotizacionCamisa(camisaAcotizar, cantidadPrenda);
+				showText("Cotizacion realizada con exito!");
+				showText(c.toString());
+				std::cin.get();
+				exitCondition = true;
+			}
+			catch (PrendaNoStock& e) {
+				showText("Lo sentimos no pudimos realizar la cotizacion...");
+				showText("Volviendo al menu principal....");
+				std::cin.get();
+				exitCondition = true;
+			}
+		}
+		else if (option == "x" || option == "X")
+		{
+			showText("");
+			showText(ANY_KEY_MESSAGE);
+			std::cin.get();
+			exitCondition = false;
+			//return to mainMenu
+			showMainMenu();
+		}
+		else
+		{
+			showText(INVALID_OPTION_MESSAGE);
+			std::cin.get();
+			exitCondition = false;
+		}
+	} while (!exitCondition);
+}
+
+bool View::menuCamisaManga() {
+	std::string option;
+	bool exitCondition = false;
+	bool isMangaCorta;
+	do
+	{
+		//std::system("cls");
+		showText("-== COTIZAR PRENDA ==-");
+		showText("------------------------------------------------------------------");
+		showText("Atendido por :" + m_vendedor->getNombre() + " " + m_vendedor->getApellido());
+		showText("La camisa a cotizar, es manga corta?");
+		showText(" ");
+		showText("1) Si");
+		showText("2) No");
+		showText("X) Volver al menu principal");
+		std::cin >> option;
+		std::system("cls");
+		if (option == "1")
+		{
+			isMangaCorta = true;
+			exitCondition = true;
+		}
+		else if (option == "2")
+		{
+			isMangaCorta = false;
+			exitCondition = true;
+		}
+		else if (option == "x" || option == "X")
+		{
+			showText("");
+			showText(ANY_KEY_MESSAGE);
+			std::cin.get();
+			exitCondition = false;
+			//return to mainMenu
+			showMainMenu();
+		}
+		else
+		{
+			showText(INVALID_OPTION_MESSAGE);
+			std::cin.get();
+			exitCondition = false;
+		}
+	} while (!exitCondition);
+
+	return isMangaCorta;
+}
 
 bool View::menuPremiun() {
 	std::string option;
