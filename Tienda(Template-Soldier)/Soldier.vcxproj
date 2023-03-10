@@ -162,6 +162,9 @@
     <ClInclude Include="Prenda.h" />
     <ClInclude Include="PrendaFactory.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagramTienda.cd" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

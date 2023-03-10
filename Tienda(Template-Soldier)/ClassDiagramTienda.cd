@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Vendedor">
+    <Position X="3.25" Y="2.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAISAADCQgAAD4AAIAAAAAEAAAgAgQAAGCAA=</HashCode>
+      <FileName>Vendedor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrendaNoStock" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vendedor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrendaNotFound" Collapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vendedor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tienda">
+    <Position X="6.75" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ADAAAAkAAACAKACAACAAgAQIAkAABIAgAAIAAAAAAAA=</HashCode>
+      <FileName>Tienda.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VendedorNoEncontradoException" Collapsed="true">
+    <Position X="4" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tienda.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Prenda">
+    <Position X="15.25" Y="2.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>gQAAAAAAAAQACACAAQAICAAAAAAAABAAAAAAAASQAAA=</HashCode>
+      <FileName>Prenda.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Camisa">
+    <Position X="13.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAACBAAAAAAgAIAASABAAAAAAAAAAAAAAAQACAQ=</HashCode>
+      <FileName>Camisa.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pantalon">
+    <Position X="19.75" Y="7.5" Width="2" />
+    <InheritanceLine Type="Prenda" FixedToPoint="true">
+      <Path>
+        <Point X="17.125" Y="6.228" />
+        <Point X="17.125" Y="6.625" />
+        <Point X="20.75" Y="6.625" />
+        <Point X="20.75" Y="7.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>gAAADAAAAAAAAAAAAAAAACBAAAAAAAAAAAQAAAQAAAA=</HashCode>
+      <FileName>Pantalon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cotizacion">
+    <Position X="0.5" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>A4AAAAAAAAAQgAAEAAAABAAAACgAAIEIAEBAIAAECgA=</HashCode>
+      <FileName>Cotizacion.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Calidad">
+    <Position X="11.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Prenda.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TipoCuello">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Camisa.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TipoManga">
+    <Position X="11.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Camisa.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TipoPantalon">
+    <Position X="11.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pantalon.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

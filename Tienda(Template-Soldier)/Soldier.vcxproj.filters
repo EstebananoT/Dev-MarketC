@@ -112,4 +112,7 @@
       <Filter>Domain\Cotizacion</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagramTienda.cd" />
+  </ItemGroup>
 </Project>
