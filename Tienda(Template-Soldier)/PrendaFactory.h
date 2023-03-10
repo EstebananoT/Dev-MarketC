@@ -10,7 +10,7 @@ class PrendaFactory
 public:
 	PrendaFactory();
 	~PrendaFactory() = default;
-	static Pantalon* crearPantalon(Calidad calidad, double precioUnitario, int cantidad, TipoPantalon tipo);
-	static Camisa* crearCamisa(Calidad calidad, double precioUnitario, int cantidad, TipoCuello tipoCuello, TipoManga tipoManga);
+	static Pantalon crearPantalon(Calidad calidad, double precioUnitario, int cantidad, TipoPantalon tipo);
+	static Camisa crearCamisa(Calidad calidad, double precioUnitario, int cantidad, TipoCuello tipoCuello, TipoManga tipoManga);
 };
 #endif //PRENDA_FACTORY_H

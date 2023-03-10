@@ -5,6 +5,7 @@
 #include "Presenter.h"
 #include <algorithm>
 #include <vector>
+#include <ctype.h>
 
 const std::string ANY_KEY_MESSAGE = "Escribe cualquier tecla para continuar.";
 const std::string INVALID_OPTION_MESSAGE = "La opción ingresada es inválida, por favor reintente.";
@@ -78,9 +79,11 @@ void View::runOption(const char* option, bool& exitCondition)
 	}
 	else if (str_option == "2")
 	{
-		menuCotizarPrenda();
+		showText("");
+		showText(ANY_KEY_MESSAGE);
 		std::cin.get();
 		exitCondition = false;
+		menuCotizarPrenda();
 	}
 	else if (str_option == "x" || str_option == "X")
 	{
@@ -102,7 +105,7 @@ void View::menuCotizarPrenda()
 	bool exitCondition = false;
 	do
 	{
-		std::system("cls");
+		//std::system("cls");
 		showText("-== COTIZAR PRENDA ==-");
 		showText("------------------------------------------------------------------");
 		showText("Atendido por :" + m_vendedor->getNombre() + " " + m_vendedor->getApellido());
@@ -118,6 +121,8 @@ void View::menuCotizarPrenda()
 		showText(ANY_KEY_MESSAGE);
 		std::cin.get();
 	} while (!exitCondition);
+
+	showMainMenu();
  }
 
 void View::runOptionPrenda(const char* option, bool& exitCondition)
@@ -126,9 +131,8 @@ void View::runOptionPrenda(const char* option, bool& exitCondition)
 
 	if (str_option == "1")
 	{
-		//menuPantalon();
-		std::cin.get();
-		exitCondition = false;
+		menuPantalon();
+		exitCondition = true;
 	}
 	else if (str_option == "2")
 	{
@@ -151,4 +155,179 @@ void View::runOptionPrenda(const char* option, bool& exitCondition)
 		std::cin.get();
 		exitCondition = false;
 	}
+}
+
+void View::menuPantalon() {
+	std::string option;
+	bool exitCondition = false;
+	do
+	{
+		//std::system("cls");
+		showText("-== COTIZAR PRENDA ==-");
+		showText("------------------------------------------------------------------");
+		showText("Atendido por :" + m_vendedor->getNombre() + " " + m_vendedor->getApellido());
+		showText("El pantalon a cotizar, Es chupin?");
+		showText(" ");
+		showText("1) Si");
+		showText("2) No");
+		showText("X) Volver al menu principal");
+		std::cin >> option;
+		std::system("cls");
+		if (option == "1")
+		{
+
+			//std::system("cls");
+			//Busca la prenda en la Tienda
+			bool isPremiun = menuPremiun();
+			Pantalon* pantalonAcotizar = m_presenter->buscarPantalon(true,isPremiun);
+			if (pantalonAcotizar != nullptr) {
+				showText("Cantidad de Unidades: " + pantalonAcotizar->getCantidadUnidades());
+			}
+			else {
+				showText("Error: objeto pantalonAcotizar no válido.");
+			}
+			//Setea el valor dado por el usuario a la prenda para poder hacer la cotizacion
+			double valorPrenda = precioPrenda();
+			
+			pantalonAcotizar->setPrecioUnitario(valorPrenda);
+			
+			showText("Cantidad de Unidades :"+pantalonAcotizar->getCantidadUnidades());
+			int cantidadPrenda = cantidadPrendas();
+			//La cotizada me la ag*rra
+			//DIOS MIO QUE ACOPLADO ESTA ESTE CODIGO :'0
+			Cotizacion c = m_presenter->hacerCotizacionPantalon(pantalonAcotizar, cantidadPrenda, m_vendedor->getCodigo());
+			cout<< c.toString();
+			if (c.getCodigoVendedor() == 0) {
+				showText("Cotizacion realizada con exito!");
+				showText(c.toString());
+				std::cin.get();
+				exitCondition = true;
+			}
+			else {
+				showText("Lo sentimos no pudimos realizar la cotizacion...");
+				showText("Volviendo al menu principal....");
+				std::cin.get();
+				exitCondition = true;
+			}
+			
+		}
+		else if (option == "2")
+		{
+			//menuCamisa();
+			std::cin.get();
+			exitCondition = false;
+		}
+		else if (option == "x" || option == "X")
+		{
+			showText("");
+			showText(ANY_KEY_MESSAGE);
+			std::cin.get();
+			exitCondition = false;
+			//return to mainMenu
+			showMainMenu();
+		}
+		else
+		{
+			showText(INVALID_OPTION_MESSAGE);
+			std::cin.get();
+			exitCondition = false;
+		}
+	} while (!exitCondition);
+}
+
+
+bool View::menuPremiun() {
+	std::string option;
+	bool exitCondition = false;
+	bool isPremiun;
+	do
+	{
+		//std::system("cls");
+		showText("-== COTIZAR PRENDA ==-");
+		showText("------------------------------------------------------------------");
+		showText("Atendido por :" + m_vendedor->getNombre() + " " + m_vendedor->getApellido());
+		showText("Seleccione la calidad de la prenda");
+		showText(" ");
+		showText("1) Standar");
+		showText("2) Premuin");
+		showText("X) Volver al menu principal");
+		std::cin >> option;
+		std::system("cls");
+		if (option == "1")
+		{
+			isPremiun = true;
+			exitCondition = true;
+		}
+		else if (option == "2")
+		{
+			isPremiun = false;
+			exitCondition = true;
+		}
+		else if (option == "x" || option == "X")
+		{
+			showText("");
+			showText(ANY_KEY_MESSAGE);
+			std::cin.get();
+			exitCondition = false;
+			//return to mainMenu
+			showMainMenu();
+		}
+		else
+		{
+			showText(INVALID_OPTION_MESSAGE);
+			std::cin.get();
+			exitCondition = false;
+		}
+	} while (!exitCondition);
+
+	return isPremiun;
+}
+
+double View::precioPrenda() {
+	double num;
+	bool valido;
+	do {
+		//std::system("cls");
+		showText("-== COTIZAR PRENDA ==-");
+		showText("------------------------------------------------------------------");
+		showText("Atendido por :" + m_vendedor->getNombre() + " " + m_vendedor->getApellido());
+		showText("Ingrese el precio unitario de la prenda a cotizar");
+		showText(" ");
+		cin >> num;
+
+		if (cin.fail()) {
+			cout << "Error: entrada no valida." << endl;
+			cin.clear();
+			valido = false;
+		}
+		else {
+			valido = true;
+		}
+	} while (!valido);
+
+	return num;
+}
+
+int View::cantidadPrendas() {
+	double num;
+	bool valido;
+	do {
+		showText("-== COTIZAR PRENDA ==-");
+		showText("------------------------------------------------------------------");
+		showText("Atendido por :" + m_vendedor->getNombre() + " " + m_vendedor->getApellido());
+		showText("Ingrese la cantidad de prendas a cotizar");
+		showText(" ");
+		cin >> num;
+
+		if (cin.fail()) {
+			cout << "Error: entrada no valida." << endl;
+			cin.clear();
+			valido = false;
+		}
+		else {
+			valido = true;
+		}
+	} while (!valido);
+
+	return num;
 }

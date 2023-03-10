@@ -3,14 +3,14 @@
 
 PrendaFactory::PrendaFactory() = default;
 
-Pantalon* PrendaFactory::crearPantalon(Calidad calidad, double precioUnitario, int cantidad, TipoPantalon tipo) {
+Pantalon PrendaFactory::crearPantalon(Calidad calidad, double precioUnitario, int cantidad, TipoPantalon tipo) {
 
-	Pantalon* newPantalon = new Pantalon(calidad, precioUnitario, cantidad, tipo);
-	return newPantalon;
+	Pantalon p(calidad, precioUnitario, cantidad, tipo);
+	return p;
 }
 
-Camisa* PrendaFactory::crearCamisa(Calidad calidad, double precioUnitario, int cantidad, TipoCuello tipoCuello, TipoManga tipoManga) {
+Camisa  PrendaFactory::crearCamisa(Calidad calidad, double precioUnitario, int cantidad, TipoCuello tipoCuello, TipoManga tipoManga) {
 
-	Camisa* camisa = new Camisa(calidad, precioUnitario, cantidad, tipoCuello, tipoManga);
-	return camisa;
+	Camisa c (calidad, precioUnitario, cantidad, tipoCuello, tipoManga);
+	return c;
 }

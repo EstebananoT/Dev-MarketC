@@ -10,10 +10,11 @@ public:
 
     // Constructor
     Prenda(Calidad calidad, double precioUnitario, int cantidad);
+    
     //Method
     virtual double getPrecioTotalPrenda();
     // Getters
-    Calidad getCalidad();
+    virtual Calidad getCalidad();
     double getPrecioUnitario();
     int getCantidadUnidades();
     std::string getNombrePrenda();

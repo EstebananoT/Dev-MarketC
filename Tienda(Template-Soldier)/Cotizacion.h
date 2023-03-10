@@ -18,29 +18,29 @@ private:
 public:
     Cotizacion(int codigo, int codigo_vendedor, Prenda* prenda, int cantidad, double total)
         : id(codigo), codigoVendedor(codigo_vendedor), prenda(prenda), cantidad(cantidad), total(total) {
-        setFechaHora(std::chrono::system_clock::now());//Setea fecha automatico cuando se crea una cotizacion.
+        fechaHora = std::chrono::system_clock::now();//Setea fecha automatico cuando se crea una cotizacion.
     }
-
+    Cotizacion(){}
     //Metodos
     std::string toString();
 
     //Gettes y Setters de Cotizacion
     int getId() const { return id; }
 
-    const std::chrono::system_clock::time_point& getFechaHora() const { return fechaHora; }
-    void setFechaHora(const std::chrono::system_clock::time_point& fechaHora) { this->fechaHora = fechaHora; }
+    std::chrono::system_clock::time_point& getFechaHora() { return fechaHora; }
+    void setFechaHora(std::chrono::system_clock::time_point _fechaHora) { fechaHora = _fechaHora; }
 
-    int getCodigoVendedor() const { return codigoVendedor; }
-    void setCodigoVendedor(int codigoVendedor) { this->codigoVendedor = codigoVendedor; }
+    int getCodigoVendedor()  { return codigoVendedor; }
+    void setCodigoVendedor(int _codigoVendedor) {codigoVendedor = _codigoVendedor; }
 
-    const Prenda* getPrenda() const { return prenda; }
-    void setPrenda(Prenda* prenda) { this->prenda = prenda; }
+    Prenda* getPrenda()  { return prenda; }
+    void setPrenda(Prenda* _prenda) {prenda = _prenda; }
 
-    int getCantidad() const { return cantidad; }
-    void setCantidad(int cantidad) { this->cantidad = cantidad; }
+    int getCantidad()  { return cantidad; }
+    void setCantidad(int _cantidad) { cantidad = _cantidad; }
 
-    double getResultado() const { return total; }
-    void setResultado(double resultado) { this->total = resultado; }
+    double getResultado()  { return total; }
+    void setResultado(double _resultado) { total = _resultado; }
 };
 
 #endif //COTIZACION_H

@@ -16,36 +16,44 @@ class Vendedor {
 public:
     // Constructores
     Vendedor(string nombre, string apellido, int codigo, Tienda* t)
-        : nombre(nombre), apellido(apellido), codigo(codigo), tienda(t) {}
+        : nombre(nombre), apellido(apellido), codigo(codigo), tienda(t) {
+        numeroCotizacion = 0;
+    }
 
     // Getters
     string getNombre() { return nombre; }
     string getApellido() { return apellido; }
     int getCodigo() { return codigo; }
-    vector<Cotizacion*> getHistorialCotizaciones() { return historial_cotizaciones; }
+    int getNumeroCotizacion() { return numeroCotizacion; }
     Tienda* getTienda() { return tienda; }
-    vector<Cotizacion*> getCotizaciones() { return historial_cotizaciones; }
+    //vector<Cotizacion*> getHistorialCotizaciones() { return historial_cotizaciones; }
+    //vector<Cotizacion*> getCotizaciones() { return historial_cotizaciones; }
 
     // Setters
     void setNombre(string _nombre) { nombre = _nombre; }
     void setApellido(string _apellido) { apellido = _apellido; }
     void setCodigo(int _codigo) { codigo = _codigo; }
-    void setHistorialCotizaciones(vector<Cotizacion*> _historial_cotizaciones) { historial_cotizaciones = _historial_cotizaciones; }
+    
     // Métodos
+    void agregarCotizacionTienda(Cotizacion* cotizacion);
+    void agregarCotizacionToMe(Cotizacion cotizacion);
 
-    void agregarCotizacion(Cotizacion* cotizacion);
-
+    //Uso apuntadores para devolver la referencia al objeto en cuestion.
     Camisa* buscarCamisa(bool isCuelloMao, bool isMangaCorta, bool isPremium);
 
     Pantalon* buscarPantalon(bool isChupin, bool isPremium);
-    void hacerCotizacion(Prenda* prenda, int cantidad, int codigo_Cotiza);
 
+    //Realiza cotizaciones dependiendo la prenda
+    Cotizacion hacerCotizacionPantalon(Pantalon* prenda, int cantidad, int numeroCotizacion);
+    Cotizacion hacerCotizacionCamisa(Camisa* prenda, int cantidad, int numeroCotizacion);
+    vector<Cotizacion> getCotizaciones() { return historial_cotizaciones; }
+    vector<Cotizacion*> getCotizacionesReferencias();
 private:
     string nombre;
     string apellido;
     int codigo;
-    vector<Cotizacion*> historial_cotizaciones;
-    int codigo_Cotiza = 0;
+    vector<Cotizacion> historial_cotizaciones;
+    int numeroCotizacion;
     Tienda* tienda;
 
 };

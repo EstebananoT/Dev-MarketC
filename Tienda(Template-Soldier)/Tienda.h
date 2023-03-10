@@ -6,7 +6,8 @@
 
 //#include "Vendedor.h" // Incluimos el archivo de cabecera de la clase Vendedor
 #include "Cotizacion.h"
-#include "Prenda.h"
+#include "Pantalon.h"
+#include "Camisa.h"
 
 using namespace std;
 
@@ -15,28 +16,31 @@ private:
     string nombre;
     string direccion;
     //vector<Vendedor*> vendedores; // Usamos la clase Vendedor después de haberla incluido
-    vector<Prenda*> prendas;
-    vector<Cotizacion*> allCotizaciones;
+    vector<Pantalon> pantalones;
+    vector<Camisa> camisas;
+    vector<Cotizacion> allCotizaciones;
 public:
     Tienda(string nombre, string direccion)
         : nombre(nombre), direccion(direccion) {}
     //Metodos para usar la logica
-    vector<Cotizacion*> getCotizaciones(int id);
     string getNombre() { return nombre; };
-    void setNombre(std::string nombre) { this->nombre = nombre; };
+    void setNombre(std::string _nombre) { nombre = _nombre; };
 
 
     string getDireccion() { return direccion; }
-    void setDireccion(std::string direccion) { this->direccion = direccion; }
+    void setDireccion(std::string _direccion) { direccion = _direccion; }
 
-    //void agregarVendedor(Vendedor* vendedor) { vendedores.push_back(vendedor); }
-    //vector<Vendedor*> getVendedores() { return vendedores; }
-    //Vendedor* getVendedorPorId(int id);
-    void agregarPrenda(Prenda* prenda) { prendas.push_back(prenda); }
-    vector<Prenda*> getPrendas() { return prendas; }
+    
+    void agregarCamisa(Camisa prenda);
+    void agregarPantalon(Pantalon prenda);
+    void agregarCotizacion(Cotizacion cotizacion);
 
-    void agregarCotizacion(Cotizacion* cotizacion) { allCotizaciones.push_back(cotizacion); }
-    vector<Cotizacion*> getCotizaciones() { return allCotizaciones; }
+    vector<Pantalon> getPantalones();
+    vector<Pantalon*> getPantalonesReferencia();
+
+    vector<Camisa> getCamisas();
+    vector<Camisa*> getCamisasReferencia();
+    vector<Cotizacion> getCotizaciones();
 };
 
 

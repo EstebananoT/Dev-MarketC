@@ -14,7 +14,7 @@ public:
     Camisa(Calidad calidad, double precioUnitario,
         int cantidadUnidades, TipoCuello tipoCuello, TipoManga tipoManga);
 
-
+    
     std::string getNombrePrenda() { return "Camisa"; }
 
     //method

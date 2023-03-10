@@ -18,7 +18,10 @@ private:
 	//Menus
 	void showMainMenu();
 	void menuCotizarPrenda();
-
+	void menuPantalon();
+	bool menuPremiun();
+	double precioPrenda();
+	int cantidadPrendas();
 	//Opciones
 	void runOption(const char* option, bool& exitCondition);
 	void runOptionPrenda(const char* option, bool& exitCondition);
