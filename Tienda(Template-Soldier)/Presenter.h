@@ -15,8 +15,8 @@ public:
 	~Presenter();
 	Pantalon* buscarPantalon(bool isChupin, bool isPremiun);
 	Camisa* buscarCamisa(bool isCuelloMao, bool isMangaCorta, bool isPremiun);
-	Cotizacion hacerCotizacionPantalon(Pantalon* p, int cantidad, int codigoCotizacion);
-	Cotizacion hacerCotizacionCamisa(Camisa* p, int cantidad, int codigoCotizacion);
+	Cotizacion hacerCotizacionPantalon(Pantalon* p, int cantidad);
+	Cotizacion hacerCotizacionCamisa(Camisa* p, int cantidad);
 	string verHistorialCotizaciones();
 
 	//Setter and Getter

@@ -44,9 +44,8 @@ public:
     Pantalon* buscarPantalon(bool isChupin, bool isPremium);
 
     //Realiza cotizaciones dependiendo la prenda
-    Cotizacion hacerCotizacionPantalon(Pantalon* prenda, int cantidad, int numeroCotizacion);
-    Cotizacion hacerCotizacionCamisa(Camisa* prenda, int cantidad, int numeroCotizacion);
-    vector<Cotizacion> getCotizaciones() { return historial_cotizaciones; }
+    Cotizacion hacerCotizacionPantalon(Pantalon* prenda, int cantidad);
+    Cotizacion hacerCotizacionCamisa(Camisa* prenda, int cantidad);
     vector<Cotizacion*> getCotizacionesReferencias();
 private:
     string nombre;

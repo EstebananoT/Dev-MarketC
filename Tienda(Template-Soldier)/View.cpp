@@ -181,7 +181,7 @@ void View::menuPantalon() {
 			bool isPremiun = menuPremiun();
 			Pantalon* pantalonAcotizar = m_presenter->buscarPantalon(true,isPremiun);
 			if (pantalonAcotizar != nullptr) {
-				showText("Cantidad de Unidades: " + pantalonAcotizar->getCantidadUnidades());
+				showText("Cantidad de Unidades: " + std::to_string(pantalonAcotizar->getCantidadUnidades()));
 			}
 			else {
 				showText("Error: objeto pantalonAcotizar no válido.");
@@ -195,15 +195,14 @@ void View::menuPantalon() {
 			int cantidadPrenda = cantidadPrendas();
 			//La cotizada me la ag*rra
 			//DIOS MIO QUE ACOPLADO ESTA ESTE CODIGO :'0
-			Cotizacion c = m_presenter->hacerCotizacionPantalon(pantalonAcotizar, cantidadPrenda, m_vendedor->getCodigo());
-			cout<< c.toString();
-			if (c.getCodigoVendedor() == 0) {
+			try {
+				Cotizacion c = m_presenter->hacerCotizacionPantalon(pantalonAcotizar, cantidadPrenda);
 				showText("Cotizacion realizada con exito!");
 				showText(c.toString());
 				std::cin.get();
 				exitCondition = true;
 			}
-			else {
+			catch (PrendaNoStock& e) {
 				showText("Lo sentimos no pudimos realizar la cotizacion...");
 				showText("Volviendo al menu principal....");
 				std::cin.get();
@@ -213,9 +212,38 @@ void View::menuPantalon() {
 		}
 		else if (option == "2")
 		{
-			//menuCamisa();
-			std::cin.get();
-			exitCondition = false;
+			//std::system("cls");
+			//Busca la prenda en la Tienda
+			bool isPremiun = menuPremiun();
+			Pantalon* pantalonAcotizar = m_presenter->buscarPantalon(false, isPremiun);
+			if (pantalonAcotizar != nullptr) {
+				showText("Cantidad de Unidades: " + std::to_string(pantalonAcotizar->getCantidadUnidades()));
+			}
+			else {
+				showText("Error: objeto pantalonAcotizar no válido.");
+			}
+			//Setea el valor dado por el usuario a la prenda para poder hacer la cotizacion
+			double valorPrenda = precioPrenda();
+
+			pantalonAcotizar->setPrecioUnitario(valorPrenda);
+
+			showText("Cantidad de Unidades :" + pantalonAcotizar->getCantidadUnidades());
+			int cantidadPrenda = cantidadPrendas();
+			//La cotizada me la ag*rra
+			//DIOS MIO QUE ACOPLADO ESTA ESTE CODIGO :'0
+			try {
+				Cotizacion c = m_presenter->hacerCotizacionPantalon(pantalonAcotizar, cantidadPrenda);
+				showText("Cotizacion realizada con exito!");
+				showText(c.toString());
+				std::cin.get();
+				exitCondition = true;
+			}
+			catch (PrendaNoStock& e) {
+				showText("Lo sentimos no pudimos realizar la cotizacion...");
+				showText("Volviendo al menu principal....");
+				std::cin.get();
+				exitCondition = true;
+			}
 		}
 		else if (option == "x" || option == "X")
 		{
@@ -252,7 +280,6 @@ bool View::menuPremiun() {
 		showText("2) Premuin");
 		showText("X) Volver al menu principal");
 		std::cin >> option;
-		std::system("cls");
 		if (option == "1")
 		{
 			isPremiun = true;

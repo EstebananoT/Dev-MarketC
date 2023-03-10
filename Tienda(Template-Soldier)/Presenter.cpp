@@ -87,8 +87,6 @@ Presenter::~Presenter()
 };
 
 Pantalon* Presenter::buscarPantalon(bool isChupin, bool isPremiun) {
-
-	
 	try {
 		return m_vendedor->buscarPantalon(isChupin, isPremiun);
 	}
@@ -109,9 +107,9 @@ Camisa* Presenter::buscarCamisa(bool isCuelloMao, bool isMangaCorta, bool isPrem
 	}
 }
 
-Cotizacion Presenter::hacerCotizacionPantalon(Pantalon* p, int cantidad, int codigoCotizacion) {
+Cotizacion Presenter::hacerCotizacionPantalon(Pantalon* p, int cantidad) {
 	try {
-		return m_vendedor->hacerCotizacionPantalon(p, cantidad, codigoCotizacion);
+		return m_vendedor->hacerCotizacionPantalon(p, cantidad);
 		
 	}
 	catch (PrendaNoStock& e) {
@@ -121,9 +119,9 @@ Cotizacion Presenter::hacerCotizacionPantalon(Pantalon* p, int cantidad, int cod
 	}
 }
 
-Cotizacion Presenter::hacerCotizacionCamisa(Camisa* c, int cantidad, int codigoCotizacion) {
+Cotizacion Presenter::hacerCotizacionCamisa(Camisa* c, int cantidad) {
 	try {
-		return m_vendedor->hacerCotizacionCamisa(c, cantidad, codigoCotizacion);
+		return m_vendedor->hacerCotizacionCamisa(c, cantidad);
 
 	}
 	catch (PrendaNoStock& e) {
@@ -135,11 +133,11 @@ Cotizacion Presenter::hacerCotizacionCamisa(Camisa* c, int cantidad, int codigoC
 
 string Presenter::verHistorialCotizaciones() {
 	string result;
-	if (m_vendedor->getCotizaciones().empty()) {
+	if (m_vendedor->getCotizacionesReferencias().empty()) {
 		result = "Ups! El vendedor : " + m_vendedor->getNombre() + " No tiene cotizaciones aun :D";
 	}
-	for (Cotizacion c : m_vendedor->getCotizaciones()) {
-		result += c.toString() + "\n";
+	for (Cotizacion* c : m_vendedor->getCotizacionesReferencias()) {
+		result += c->toString() + "\n";
 	}
 	return result;
 }

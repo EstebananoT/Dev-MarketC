@@ -4,7 +4,7 @@
 #include "Pantalon.h"
 #include <typeindex>
 
- Cotizacion Vendedor::hacerCotizacionPantalon(Pantalon* pantalon, int cantidad, int numeroCotizacion) {
+ Cotizacion Vendedor::hacerCotizacionPantalon(Pantalon* pantalon, int cantidad) {
      if (cantidad > pantalon->getCantidadUnidades()) {
          throw PrendaNoStock();
      }
@@ -15,13 +15,12 @@
          //agregarCotizacionTienda(*cotizacion);
          numeroCotizacion += 1;
          agregarCotizacionToMe(cotizacion);
-         cout << cotizacion.toString();
          return cotizacion;
 
      }
 }
 
- Cotizacion Vendedor::hacerCotizacionCamisa(Camisa* camisa, int cantidad, int numeroCotizacion) {
+ Cotizacion Vendedor::hacerCotizacionCamisa(Camisa* camisa, int cantidad) {
      if (cantidad > camisa->getCantidadUnidades()) {
          throw PrendaNoStock();
      }
@@ -32,10 +31,17 @@
          numeroCotizacion += 1;
          //agregarCotizacionTienda(*cotizacion); No lo c rick. 
          agregarCotizacionToMe(cotizacion);
-         cout << cotizacion.toString();
          return cotizacion;
 
      }
+ }
+
+ vector<Cotizacion*> Vendedor::getCotizacionesReferencias() {
+     vector<Cotizacion*> referencias;
+     for (Cotizacion& coti : historial_cotizaciones) {
+         referencias.push_back(&coti);
+     }
+     return referencias;
  }
 
 /**void Vendedor::agregarCotizacionTienda(Cotizacion cotizacion) {
@@ -46,58 +52,38 @@ void Vendedor::agregarCotizacionToMe(Cotizacion cotizacion) {
 }
 
 Camisa* Vendedor::buscarCamisa(bool isCuelloMao, bool isMangaCorta, bool isPremiun) {
-    vector<Camisa> camisas = tienda->getCamisas();
-    //Crear puntero de camisa
-    Camisa* camisaBuscada = nullptr;
-    // Iterar por el vector de prendas
+
+    vector<Camisa*> camisas = tienda->getCamisasReferencia();
+    Camisa* objCamisaFound = nullptr;
     for (int i = 0; i < camisas.size(); i++) {
-        if ((camisas[i].getCalidad() == Calidad::PREMIUM) == isPremiun) {
-            if (camisas[i].isMangaCorta() == isMangaCorta) {
-                if (camisas[i].isCuelloMao() == isCuelloMao) {
-                    camisaBuscada = &camisas[i];
-                }
-                else {
-                    camisaBuscada = &camisas[i];
-                }
+        if (camisas[i]->getCalidad() == Calidad::PREMIUM && isPremiun) {
+            if (camisas[i]->isCuelloMao() == isCuelloMao) {
+                objCamisaFound = camisas[i];
+                break;
             }
             else {
-                if (camisas[i].isCuelloMao() == isCuelloMao) {
-                    camisaBuscada = &camisas[i];
-                }
-                else {
-                    camisaBuscada = &camisas[i];
-                }
+                objCamisaFound = camisas[i];
+                break;
             }
         }
-        else {
-             if (camisas[i].isMangaCorta() == isMangaCorta) {
-                 if (camisas[i].isCuelloMao() == isCuelloMao) {
-                     camisaBuscada = &camisas[i];
-                 }
-                 else {
-                     camisaBuscada = &camisas[i];
-                 }
-             }
-             else {
-                 if (camisas[i].isCuelloMao() == isCuelloMao) {
-                    camisaBuscada = &camisas[i];
-                 }
-                 else {
-                     camisaBuscada = &camisas[i];
-                 }
-             }
+        else if (camisas[i]->getCalidad() != Calidad::PREMIUM && !isPremiun) {
+            if (camisas[i]->isCuelloMao() == isCuelloMao) {
+                objCamisaFound = camisas[i];
+                break;
+            }
+            else {
+                objCamisaFound = camisas[i];
+                break;
+            }
         }
-
-        
     }
-    if (camisaBuscada == nullptr) throw PrendaNotFound();
-    return camisaBuscada;
+    if (objCamisaFound == nullptr) throw PrendaNotFound();
+    return objCamisaFound;
 };
 
 Pantalon* Vendedor::buscarPantalon(bool isChupin, bool isPremiun) {
     vector<Pantalon*> pantalones = tienda->getPantalonesReferencia();
     Pantalon* objPantalonFound = nullptr;
-    cout << pantalones.size();
     for (int i = 0; i < pantalones.size(); i++) {
         if (pantalones[i]->getCalidad() == Calidad::PREMIUM && isPremiun) {
             if (pantalones[i]->isChupin() == isChupin) {
@@ -113,8 +99,6 @@ Pantalon* Vendedor::buscarPantalon(bool isChupin, bool isPremiun) {
         }
     }
     if (objPantalonFound == nullptr) throw PrendaNotFound();
-    cout << objPantalonFound->getPrecioTotalPrenda() <<std::endl;
-    cout << objPantalonFound->getPrecioUnitario() << std::endl;
     return objPantalonFound;
 }
 
